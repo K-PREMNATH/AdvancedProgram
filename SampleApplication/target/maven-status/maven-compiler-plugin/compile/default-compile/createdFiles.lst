@@ -1,0 +1,5 @@
+com\sample\db\DbConnection.class
+com\sample\db\impl\UserImpl.class
+com\sample\db\IUser.class
+com\sample\model\User.class
+com\SampleApplication.class
