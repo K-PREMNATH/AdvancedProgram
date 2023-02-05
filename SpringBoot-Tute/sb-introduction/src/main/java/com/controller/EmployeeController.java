@@ -1,8 +1,12 @@
 package com.controller;
 
-import com.dto.req.GetSalaryTaxReq;
-import com.dto.res.GetSalaryTaxRes;
-import org.springframework.web.bind.annotation.*;
+import com.business.EmployeeBusiness;
+import com.dto.req.LoginReq;
+import com.dto.res.LoginRes;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.logging.Logger;
 
@@ -11,21 +15,13 @@ public class EmployeeController {
 
     private Logger LOGGER = Logger.getLogger(this.getClass().getName());
 
-    @GetMapping("/get/type1")
-    public String getSalaryTax1(@RequestParam("name") String name ){
-        System.out.println(name);
-        return name;
-    }
+    @Autowired
+    EmployeeBusiness employeeBusiness;
 
-    @PostMapping("/get/type2")
-    public int getSalaryTax2(){
-        return 10;
-    }
-
-    @PostMapping("/get/type3")
-    public GetSalaryTaxRes getSalaryTax3(@RequestBody GetSalaryTaxReq getSalaryTaxReq){
-        LOGGER.info(getSalaryTaxReq.toString());
-        return null;
+    @PostMapping("/user/login")
+    public LoginRes login(@RequestBody LoginReq loginReq){
+        LoginRes loginRes = employeeBusiness.login(loginReq);
+        return loginRes;
     }
 
 }
